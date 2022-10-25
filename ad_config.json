@@ -1,0 +1,29 @@
+{
+    "domain": "abc.com",
+
+    "groups": [
+        {
+            "name": "Employees"
+        }
+    ],
+
+    
+    "users": [
+        {
+            "name": "Herkko Mehtala",
+            "password":"P@ssw0rd123",
+            "groups": [
+                "Employees"
+            ]
+        },
+        {
+            "name": "Bob Ob",
+            "password":"P@ssw0rdABC",
+            "groups": [
+                "Employees"
+            ]
+        }
+
+    ]
+
+}
