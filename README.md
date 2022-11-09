@@ -1,11 +1,11 @@
 ```shell
 
- ██████╗ ███████╗███╗   ██╗      ██╗   ██╗██╗   ██╗██╗     ███╗   ██╗ █████╗ ██████╗ 
+ ██████╗ ███████╗███╗   ██╗      ██╗   ██╗██╗   ██╗██╗     ███╗   ██╗ █████╗ ██████╗
 ██╔════╝ ██╔════╝████╗  ██║      ██║   ██║██║   ██║██║     ████╗  ██║██╔══██╗██╔══██╗
 ██║  ███╗█████╗  ██╔██╗ ██║█████╗██║   ██║██║   ██║██║     ██╔██╗ ██║███████║██║  ██║
 ██║   ██║██╔══╝  ██║╚██╗██║╚════╝╚██╗ ██╔╝██║   ██║██║     ██║╚██╗██║██╔══██║██║  ██║
 ╚██████╔╝███████╗██║ ╚████║       ╚████╔╝ ╚██████╔╝███████╗██║ ╚████║██║  ██║██████╔╝
- ╚═════╝ ╚══════╝╚═╝  ╚═══╝        ╚═══╝   ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝                                                                                 
+ ╚═════╝ ╚══════╝╚═╝  ╚═══╝        ╚═══╝   ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝
 ```
 # Gen-VulnAD
 
@@ -21,4 +21,4 @@ Generate vulnerable active directories from scratch using a base `json` file and
 ## Credits :yellow_heart:
 * [WazeHell](https://github.com/WazeHell/) For inspiration
 * [John Hammond](https://github.com/JohnHammond) For inspiration
-* [Dominic Tarr](https://github.com/dominictarr) For the name list
+* [Dominic Tarr](https://github.com/dominictarr) For the name lists
