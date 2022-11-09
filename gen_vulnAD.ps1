@@ -1,4 +1,7 @@
-param([Parameter(Mandatory=$true)] $Jsonfile)
+param(
+    [Parameter(Mandatory=$true)] $Jsonfile,
+    [switch]$Revert
+    )
 
 
 function CreateADGroup() {
@@ -13,8 +16,10 @@ function CreateADGroup() {
 function RemoveADGroup(){
     param([Parameter(Mandatory=$true)] $groupObject)
 
-    $name = $groupObject.name
-    Remove-ADGroup -Identity $name -Confirm:$false
+    $groups = $groupObject.split(" ")
+    foreach ($group in $groups) {
+        Remove-ADGroup -Identity $group -Confirm:$false
+    }
 }
 function CreateADUser(){
     param([Parameter(Mandatory=$true)] $userObject)
@@ -55,7 +60,7 @@ function RemoveADUser(){
     $username = ($firstname[0] + $lastname).ToLower()
     $samAccountName = $username
 
-    Remove-ADUser -Identity $samAccountName
+    Remove-ADUser -Identity $samAccountName -Confirm:$false
 }
 
 function NerfPasswordPolicy(){
@@ -74,12 +79,24 @@ function BuffPasswordPolicy(){
 
 $jsonData = (Get-Content $Jsonfile | ConvertFrom-JSON)
 $Global:Domain = $jsonData.domain
-NerfPasswordPolicy
 
-# Create the groups for the domain
-CreateADGroup $jsonData.groups
+if ( -not $Revert) {
+    NerfPasswordPolicy
 
-# Create the users for the domain
-foreach ( $user in $jsonData.users){
-    CreateADUser $user
+    # Create the groups for the domain
+    CreateADGroup $jsonData.groups
+
+    # Create the users for the domain
+    foreach ( $user in $jsonData.users){
+        CreateADUser $user
+    }
+
+} else {
+    # Revert given -> roll back
+    BuffPasswordPolicy
+    foreach ( $user in $jsonData.users){
+        RemoveADUser $user
+    }
+    
+    RemoveADGroup $jsonData.groups
 }

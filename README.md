@@ -15,7 +15,7 @@ Generate vulnerable active directories from scratch using a base `ad_config.json
 * Support for workstations
 * Only need to run the script on an installed DC with Active Directory installed
 * Customizable config file
-
+* Rollback
 
 ## Credits :yellow_heart:
 * [WazeHell](https://github.com/WazeHell/) For inspiration
