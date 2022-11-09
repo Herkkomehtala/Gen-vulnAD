@@ -1,6 +1,6 @@
 $jsonData = Get-Content .\ad_config.json | ConvertFrom-JSON
 $Global:Domain = $jsonData.domain
-$GLobal:numGroups = $jsonData.numGroups
+$numGroups = $jsonData.numGroups
 $MaxUserGroups = $jsonData.MaxUserGroups
 $numUsers = $jsonData.numUsers
 $OutputJsonFile = $jsonData.outputJsonFile
@@ -31,3 +31,4 @@ ConvertTo-Json -InputObject @{
     "groups"=([string]$groups)
     "users"=$users
 } | Out-File $OutputJsonFile
+

@@ -4,8 +4,10 @@ param([Parameter(Mandatory=$true)] $Jsonfile)
 function CreateADGroup() {
     param([Parameter(Mandatory=$true)] $groupObject)
 
-    $name = $groupObject.name
-    New-ADGroup -name $name -GroupScope Global
+    $groups = $groupObject.split(" ")
+    foreach ($group in $groups) {
+        New-ADGroup -name $group -GroupScope Global
+    }
 }
 
 function RemoveADGroup(){
@@ -54,7 +56,6 @@ function RemoveADUser(){
     $samAccountName = $username
 
     Remove-ADUser -Identity $samAccountName
-
 }
 
 function NerfPasswordPolicy(){
@@ -71,13 +72,14 @@ function BuffPasswordPolicy(){
     Remove-Item -force c:\secpol.cfg -confirm:$false
 }
 
-$jsonData = Get-Content $Jsonfile | ConvertFrom-JSON
+$jsonData = (Get-Content $Jsonfile | ConvertFrom-JSON)
 $Global:Domain = $jsonData.domain
+NerfPasswordPolicy
 
-foreach ( $group in $jsonData.groups){
-    CreateADGroup $group
-}
+# Create the groups for the domain
+CreateADGroup $jsonData.groups
 
+# Create the users for the domain
 foreach ( $user in $jsonData.users){
     CreateADUser $user
 }
