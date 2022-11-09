@@ -1,31 +1,31 @@
 $jsonData = Get-Content .\ad_config.json | ConvertFrom-JSON
 $Global:Domain = $jsonData.domain
-$num_groups = 12
-$MaxUserGroups = 2
-$num_users = 10
-$OutputJsonFile = "out.json"
+$GLobal:numGroups = $jsonData.numGroups
+$MaxUserGroups = $jsonData.MaxUserGroups
+$numUsers = $jsonData.numUsers
+$OutputJsonFile = $jsonData.outputJsonFile
 
-$group_names = (Get-Content "data/groups.txt")
-$first_names = (Get-Content "data/firstNames.txt")
-$last_names = (Get-Content "data/lastNames.txt")
+$groupNames = (Get-Content "data/groups.txt")
+$firstNames = (Get-Content "data/firstNames.txt")
+$lastNames = (Get-Content "data/lastNames.txt")
 $passwords = (Get-Content "data/passwords.txt")
-$groups = @(Get-Random -InputObject $group_names -Count $num_groups)
+$groups = @(Get-Random -InputObject $groupNames -Count $numGroups)
 $users = @()
 
 # Create the domain users with necessary information
-for ($i = 0; $i -lt $num_users; $i++) {
-    $first_name = (Get-Random -InputObject $first_names)
-    $last_name = (Get-Random -InputObject $last_names)
+for ($i = 0; $i -lt $numUsers; $i++) {
+    $firstName = (Get-Random -InputObject $firstNames)
+    $lastName = (Get-Random -InputObject $lastNames)
     $password = (Get-Random -InputObject $passwords)
-    $new_user = @{
-        "name"="$first_name $last_name"
+    $newUser = @{
+        "name"="$firstName $lastName"
         "password"="$password"
         "groups"=@((Get-Random -InputObject $groups -Count (Get-Random -Minimum 1 -Maximum $MaxUserGroups)))
     }
-    $users += $new_user
+    $users += $newUser
 }
 
-# Create our domain information into a output Json file
+# Create our domain information into an output Json file
 ConvertTo-Json -InputObject @{
     "domain"=$Domain
     "groups"=([string]$groups)
