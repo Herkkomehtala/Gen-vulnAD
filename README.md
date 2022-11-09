@@ -1,5 +1,4 @@
 ```shell
-
  ██████╗ ███████╗███╗   ██╗      ██╗   ██╗██╗   ██╗██╗     ███╗   ██╗ █████╗ ██████╗
 ██╔════╝ ██╔════╝████╗  ██║      ██║   ██║██║   ██║██║     ████╗  ██║██╔══██╗██╔══██╗
 ██║  ███╗█████╗  ██╔██╗ ██║█████╗██║   ██║██║   ██║██║     ██╔██╗ ██║███████║██║  ██║
@@ -9,7 +8,7 @@
 ```
 # Gen-VulnAD
 
-Generate vulnerable active directories from scratch using a base `json` file and a powershell script. Inspider by [Wazehell's AD script](https://github.com/WazeHell/vulnerable-AD) and [John Hammond](https://github.com/JohnHammond).  
+Generate vulnerable active directories from scratch using a base `json` file and a powershell script. inspired by [Wazehell's AD script](https://github.com/WazeHell/vulnerable-AD) and [John Hammond](https://github.com/JohnHammond).  
 
 ## Features
 * Randomized accounts, groups and passwords
